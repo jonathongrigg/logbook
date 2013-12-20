@@ -1,15 +1,13 @@
 package com.jonathongrigg.logbook;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.app.Fragment;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -19,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
@@ -41,6 +39,10 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_settings:
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, new SettingsFragment())
+                        .addToBackStack(null)
+                        .commit();
                 return true;
         }
         return super.onOptionsItemSelected(item);
